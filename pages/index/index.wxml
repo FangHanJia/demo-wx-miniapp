@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class='index-wrap'>
+  <view class='index_header tab_header'>
+    <view class='tab_text {{tabNumber == 0 ? "actived" : ""}}' data-item='0' bindtap='tabSwitch'>精选拼团</view>
+    <view class='tab_text {{tabNumber == 1 ? "actived" : ""}}' data-item='1' bindtap='tabSwitch'>人气拼团</view>
+    <view class='tab_text {{tabNumber == 2 ? "actived" : ""}}' data-item='2' bindtap='tabSwitch'>低价拼团</view>
+  </view>
+  <scroll-view class='index_main' scroll-y wx:if="{{tabNumber==0}}">
+    <view class='main_list_item' wx:for="{{goodsData}}" wx:key="goodsDataKey">
+      <view class='goods_info box_size'>
+        <view class='user_info'>
+          <image class='info_img' src="{{item.userImg}}"></image>
+          <text class='info_name'>{{item.nickName}}</text>
+          <view class='info_append'>+微信</view>
+        </view>
+        <image class='goods_img' src="{{item.goodsImg}}" data-itemid='{{item.itemId}}' bindtap='toGoodsDetails'></image>
+        <text class='goods_describe many_line'>{{item.goodsText}}</text>
+      </view>
+      <view class='goods_price'>
+        <view class='price_wrap'>
+          拼团价： <text class='price_collage'>¥{{item.collagePrice}}</text> / 佣金： <text class='price_collage'>¥{{item.commissionPrice}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+  </scroll-view>
+</view>
