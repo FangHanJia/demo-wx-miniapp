@@ -1,4 +1,5 @@
 // pages/goodsDetails/goodsDetails.js
+const app = getApp();
 Page({
 
   /**
@@ -65,5 +66,47 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 支付测试
+   */
+  requestPayment: function () {
+    const self = this;
+    self.setData({
+      loading: true
+    });
+
+    app.getUserOpenId(function (err, openid) {
+      if (!err) {
+        wx.request({
+          url: 'https://14592619.qcloud.la/payment',
+          data: {
+            openid
+          },
+          method: 'POST',
+          success(res) {
+            console.log( res)
+            const payargs = res.data.payargs
+            // wx.requestPayment({
+            //   timeStamp: payargs.timeStamp,
+            //   nonceStr: payargs.nonceStr,
+            //   package: payargs.package,
+            //   signType: payargs.signType,
+            //   paySign: payargs.paySign
+            // })
+
+            self.setData({
+              loading: false
+            })
+          }
+        })
+      } else {
+        console.log('err:', err)
+        self.setData({
+          loading: false
+        })
+      }
+    })
   }
 })
