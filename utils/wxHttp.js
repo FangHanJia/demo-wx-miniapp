@@ -27,6 +27,10 @@ export default{
     var url = _url && _url.startsWith('http') ? _url : `${baseUrl}/${_url}`;
 
     return new Promise((resolve,reject)=>{
+      // 显示loading
+      wx.showLoading({
+        title: '加载中',
+      })
       wx.request({
         method:'GET',
         url: url,
@@ -35,10 +39,25 @@ export default{
           'content-type': 'application/json' // 默认值
         },
         success(res) {
+          // 隐藏loading
+          wx.hideLoading();
+          if (res.data.code == 400) {
+            wx.showToast({
+              title: res.data.msg || '用户未登录',
+              icon: 'none'
+            });
+          } else if (res.data.code != 200) {
+            wx.showToast({
+              title: res.data.msg || '操作失败',
+              icon: 'none'
+            });
+          }
           // 成功的回调函数
           resolve(res);
         },
         fail(error){
+          // 隐藏loading
+          wx.hideLoading();
           reject(error);
         }
       })
@@ -50,6 +69,10 @@ export default{
     var url = _url && _url.startsWith('http') ? _url : `${baseUrl}/${_url}`;
 
     return new Promise((resolve, reject) => {
+      // 显示loading
+      wx.showLoading({
+        title: '加载中',
+      })
       wx.request({
         method: 'POST',
         url: url,
@@ -58,10 +81,25 @@ export default{
           'content-type': 'application/json' // 默认值
         },
         success(res) {
+          // 隐藏loading
+          wx.hideLoading();
+          if (res.data.code == 400) {
+            wx.showToast({
+              title: res.data.msg || '用户未登录',
+              icon: 'none'
+            });
+          } else if (res.data.code != 200) {
+            wx.showToast({
+              title: res.data.msg || '操作失败',
+              icon: 'none'
+            });
+          }
           // 成功的回调函数
           resolve(res);
         },
         fail(error) {
+          // 隐藏loading
+          wx.hideLoading();
           reject(error);
         }
       })

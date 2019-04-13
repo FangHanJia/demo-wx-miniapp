@@ -86,18 +86,17 @@ Page({
           },
           method: 'POST',
           success(res) {
-            console.log( res)
-            const payargs = res.data.payargs
-            // wx.requestPayment({
-            //   timeStamp: payargs.timeStamp,
-            //   nonceStr: payargs.nonceStr,
-            //   package: payargs.package,
-            //   signType: payargs.signType,
-            //   paySign: payargs.paySign
-            // })
-
             self.setData({
               loading: false
+            })
+            console.log( res)
+            var payargs = res.data.payargs
+            wx.requestPayment({
+              timeStamp: payargs.timeStamp,
+              nonceStr: payargs.nonceStr,
+              package: payargs.package,
+              signType: payargs.signType,
+              paySign: payargs.paySign
             })
           }
         })

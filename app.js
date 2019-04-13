@@ -52,7 +52,8 @@ App({
       callback(null, self.globalData.openid)
     } else {
       wx.login({
-        success(data) {console.log(data)
+        success(data) {
+          console.log(data)
           wx.request({
             url: 'https://14592619.qcloud.la/openid',
             data: {

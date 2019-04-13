@@ -105,14 +105,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    app.wxHttp.post('http://taokeapp-test.mastersheng.com/api/interest/getIncomeData', {}).then(res=>{
-      wx.hideLoading();
-    }).catch(error=>{
-      wx.hideLoading()
-    })
+    
+    // app.wxHttp.post('http://taokeapp-test.ymxhd.com/api/activation/getcodelist', {}).then(res=>{
+    // }).catch(error=>{
+    // })
   },
   /**
    * 用户点击右上角分享
