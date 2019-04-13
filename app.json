@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/blog/blogHome",
     "pages/logs/logs",
     "pages/goodsDetails/goodsDetails"
   ],
@@ -14,8 +15,8 @@
   },
   "tabBar": {
     "selectedColor": "#FF3546",
-    "backgroundColor": "#fff",
-    "borderStyle": "#fff",
+    "backgroundColor": "white",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -36,5 +37,8 @@
     "connectSocket": 10000,
     "uploadFile": 10000,
     "downloadFile": 10000
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx23286eeb74cddf5d"
+  ]
 }
